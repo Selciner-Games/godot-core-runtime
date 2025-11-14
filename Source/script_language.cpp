@@ -571,15 +571,3 @@ Dictionary CPPHeaderLanguage::_get_global_class_name(const String& p_path) const
 {
 	return Dictionary();
 }
-
-// Deprecated
-#ifndef LITHIUM_EDITION
-bool CPPScriptLanguage::_has_named_classes() const
-{
-	return false; // Not Supprted Yet
-}
-bool CPPHeaderLanguage::_has_named_classes() const
-{
-	return false;
-}
-#endif

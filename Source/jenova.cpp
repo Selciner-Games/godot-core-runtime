@@ -814,15 +814,6 @@ namespace jenova
 			}
 			bool InitializeDocumentation()
 			{
-				// Register Nodes Documentation
-				jenova::RegisterDocumentationFromByteArray(BUFFER_PTR_SIZE_PARAM(jenova::documentation::JenovaRuntimeXML));
-
-				// Register Scripts Documentation
-				jenova::UpdateScriptsDocumentation();
-
-				// Register Settings Documentation [ Disabled : This will replace entire Editor Settings ]
-				// jenova::RegisterDocumentationFromByteArray(BUFFER_PTR_SIZE_PARAM(jenova::documentation::EditorSettingsXML));
-
 				// All Good
 				return true;
 			}
@@ -6240,11 +6231,6 @@ namespace jenova
 		// All Good
 		return true;
 	}
-	void RegisterDocumentationFromByteArray(const char* xmlDataPtr, size_t xmlDataSize)
-	{
-		std::string documentationData(xmlDataPtr, xmlDataSize);
-		internal::gdextension_interface_editor_help_load_xml_from_utf8_chars_and_len(documentationData.data(), documentationData.size());
-	}
 	void CopyStringToClipboard(const String& str)
 	{
 		DisplayServer::get_singleton()->clipboard_set(str);
@@ -8460,8 +8446,6 @@ namespace jenova
 		else if (enumFlagStr == "PROPERTY_HINT_INT_IS_OBJECTID") return PROPERTY_HINT_INT_IS_OBJECTID;
 		else if (enumFlagStr == "PROPERTY_HINT_INT_IS_POINTER") return PROPERTY_HINT_INT_IS_POINTER;
 		else if (enumFlagStr == "PROPERTY_HINT_ARRAY_TYPE") return PROPERTY_HINT_ARRAY_TYPE;
-		else if (enumFlagStr == "PROPERTY_HINT_LOCALE_ID") return PROPERTY_HINT_LOCALE_ID;
-		else if (enumFlagStr == "PROPERTY_HINT_LOCALIZABLE_STRING") return PROPERTY_HINT_LOCALIZABLE_STRING;
 		else if (enumFlagStr == "PROPERTY_HINT_NODE_TYPE") return PROPERTY_HINT_NODE_TYPE;
 		else if (enumFlagStr == "PROPERTY_HINT_HIDE_QUATERNION_EDIT") return PROPERTY_HINT_HIDE_QUATERNION_EDIT;
 		else if (enumFlagStr == "PROPERTY_HINT_PASSWORD") return PROPERTY_HINT_PASSWORD;
@@ -9816,29 +9800,6 @@ namespace jenova
 	}
 	bool UpdateScriptsDocumentation()
 	{
-		// Collect Scripts
-		jenova::ResourceCollection projectScripts;
-		jenova::CollectResourcesFromFileSystem("res://", "cpp", projectScripts);
-		for (const auto& projectScript : projectScripts)
-		{
-			// Find Documentation of Scripts
-			String docPath = projectScript->get_path().replace(projectScript->get_path().get_extension(), "xml");
-			if (FileAccess::file_exists(docPath))
-			{
-				// Read Documentation XML Content
-				String docFullPath = ProjectSettings::get_singleton()->globalize_path(docPath);
-				std::string docXMLContent = jenova::ReadStdStringFromFile(AS_STD_STRING(docFullPath));
-				if (docXMLContent.empty())
-				{
-					jenova::Warning("Jenova Documentation Builder", "Unable to Read Documentation for C++ Script %s", AS_C_STRING(projectScript->get_path()));
-					continue;
-				}
-
-				// Add Script Documentation to Engine
-				jenova::RegisterDocumentationFromByteArray(docXMLContent.data(), docXMLContent.size());
-			}
-		}
-
 		// All Good
 		return true;
 	}

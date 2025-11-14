@@ -170,7 +170,6 @@
 #include <classes/rendering_server.hpp>
 #include <classes/rendering_device.hpp>
 #include <classes/engine_debugger.hpp>
-#include <classes/packed_data_container.hpp>
 #include <classes/project_settings.hpp>
 #include <classes/grid_container.hpp>
 #include <classes/box_container.hpp>
@@ -215,8 +214,6 @@
 #include <classes/semaphore.hpp>
 #include <classes/performance.hpp>
 #include <classes/script.hpp>
-#include <classes/script_editor.hpp>
-#include <classes/script_editor_base.hpp>
 #include <classes/script_extension.hpp>
 #include <classes/script_language.hpp>
 #include <classes/script_language_extension.hpp>
@@ -271,7 +268,6 @@
 #include <Misc/lithium-compatibility.hpp>
 #else
 #include <classes/packed_scene.hpp>
-#include <classes/editor_feature_profile.hpp>
 #include <classes/editor_scene_post_import_plugin.hpp>
 #endif
 
@@ -946,7 +942,6 @@ namespace jenova
 	Ref<FontFile> CreateFontFileFromByteArray(const uint8_t* fontDataPtr, size_t fontDataSize);
 	bool CollectResourcesFromFileSystem(const String& rootPath, const String& extensions, jenova::ResourceCollection& collectedResources, bool respectGDIgnore = true);
 	bool CollectScriptsFromFileSystemAndScenes(const String& rootPath, const String& extension, jenova::ResourceCollection& collectedResources, bool respectGDIgnore = true);
-	void RegisterDocumentationFromByteArray(const char* xmlDataPtr, size_t xmlDataSize);
 	void CopyStringToClipboard(const String& str);
 	String GetStringFromClipboard();
 	void CopyStdStringToClipboard(const std::string& str);
