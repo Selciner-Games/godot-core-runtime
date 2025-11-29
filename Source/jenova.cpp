@@ -8429,7 +8429,6 @@ namespace jenova
 		else if (enumFlagStr == "PROPERTY_HINT_LINK") return PROPERTY_HINT_LINK;
 		else if (enumFlagStr == "PROPERTY_HINT_FLAGS") return PROPERTY_HINT_FLAGS;
 		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_2D_RENDER") return PROPERTY_HINT_LAYERS_2D_RENDER;
-		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_2D_PHYSICS") return PROPERTY_HINT_LAYERS_2D_PHYSICS;
 		else if (enumFlagStr == "PROPERTY_HINT_FILE") return PROPERTY_HINT_FILE;
 		else if (enumFlagStr == "PROPERTY_HINT_DIR") return PROPERTY_HINT_DIR;
 		else if (enumFlagStr == "PROPERTY_HINT_GLOBAL_FILE") return PROPERTY_HINT_GLOBAL_FILE;
@@ -8455,7 +8454,6 @@ namespace jenova
 		else if (enumFlagStr == "PROPERTY_HINT_MAX") return PROPERTY_HINT_MAX;
 
 		#ifndef LITHIUM_EDITION
-		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_2D_NAVIGATION") return PROPERTY_HINT_LAYERS_2D_NAVIGATION;
 		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_3D_RENDER") return PROPERTY_HINT_LAYERS_3D_RENDER;
 		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_3D_PHYSICS") return PROPERTY_HINT_LAYERS_3D_PHYSICS;
 		else if (enumFlagStr == "PROPERTY_HINT_LAYERS_3D_NAVIGATION") return PROPERTY_HINT_LAYERS_3D_NAVIGATION;
